@@ -2,6 +2,8 @@
         <div class="todoContent">
             <TodoInput @addTask="addTask"/>
             <TodoList :todos="todos"  @removeItem="removeItem"/>
+            {{removingElement}}
+            {{todos}}
         </div>
 </template>
 
@@ -25,6 +27,9 @@ export default {
     },
     methods : {
         addTask(e){
+            if(e==''){
+                return;
+            }
             this.task=e;
             var todoObject={
                 id : this.todoItem,
@@ -36,6 +41,8 @@ export default {
         },
         removeItem(e){
             this.removingElement=e;
+            this.todos = this.todos.filter((item) =>{console.log(item); if(item.id !=e){return item}});
+            console.log(this.todos);
         }
     }
 

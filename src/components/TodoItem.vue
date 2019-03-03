@@ -1,7 +1,7 @@
 <template>
     <div class='row todoItem'>
         <div class='col-md-9 todoTitle'>{{todo.title}}</div>
-        <div class='col-md-3' value=todo.id  @click="removeItem">&times;</div>
+        <div class='col-md-3' :id="todo.id"  @click="removeItem">&times;</div>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
     name : 'TodoItem',
     methods : {
         removeItem(){
-            this.$emit('removeItem',event.target.value)
+            this.$emit('removeItem',event.target.id)
         }
     }
 }

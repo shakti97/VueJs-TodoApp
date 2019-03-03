@@ -1,9 +1,11 @@
 <template>
         <div class="todoContent">
-            <TodoInput @addTask="addTask"/>
-            <TodoList :todos="todos"  @removeItem="removeItem"/>
-            {{removingElement}}
-            {{todos}}
+            <TodoInput :taskitem="task" :operation="operation" @addTask="addTask" @editTask="editTask"/>
+            <TodoList :todos="todos"  @removeItem="removeItem" @editItem="editItem"/>
+            <!-- {{removingElement}}
+            {{todos}} -->
+            {{task}}
+            <!-- {{editElement}} -->
         </div>
 </template>
 
@@ -16,9 +18,11 @@ export default {
     data(){
         return{
             todoItem : 1,
-            task : 'No task',
+            task : '',
+            operation : 'Add Task',
             todos : [],
-            removingElement : ''
+            removingElement : '',
+            editElement:''
         }
     },
     components : {
@@ -41,8 +45,28 @@ export default {
         },
         removeItem(e){
             this.removingElement=e;
+            console.log('e',e);
             this.todos = this.todos.filter((item) =>{console.log(item); if(item.id !=e){return item}});
             console.log(this.todos);
+        },
+        editItem(e){
+            this.editElement=e;
+            var selectedElement=this.todos.filter((item)=>{if(item.id==e){return item}});
+            console.log(selectedElement);
+            this.task=selectedElement[0].title;
+            this.operation='Edit Task'
+        },
+        editTask(e){
+            if(e==''){
+                return;
+            }
+            var todoObject={
+                id : this.editElement,
+                title : e
+            }
+            this.todos[this.editElement-1]=todoObject;
+            console.log(this.todos);
+
         }
     }
 

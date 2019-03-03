@@ -1,7 +1,7 @@
 <template>
     <div class='container'>
         <div v-for="todo in todos" :key="todo.id">
-            <TodoItem :todo="todo" @removeItem="removeItem"/>
+            <TodoItem :todo="todo" @removeItem="removeItem" @editItem="editItem"/>
         </div>
     </div>    
 </template>
@@ -17,6 +17,9 @@ export default {
     methods : {
         removeItem(e){
             this.$emit('removeItem',e);
+        },
+        editItem(e){
+            this.$emit('editItem',e);
         }
     }
 

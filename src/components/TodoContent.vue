@@ -45,14 +45,14 @@ export default {
         },
         removeItem(e){
             this.removingElement=e;
-            console.log('e',e);
-            this.todos = this.todos.filter((item) =>{console.log(item); if(item.id !=e){return item}});
-            console.log(this.todos);
+            // console.log('e',e);
+            this.todos = this.todos.filter((item) =>{ if(item.id !=e){return item}});
+            // console.log(this.todos);
         },
         editItem(e){
             this.editElement=e;
             var selectedElement=this.todos.filter((item)=>{if(item.id==e){return item}});
-            console.log(selectedElement);
+            // console.log(selectedElement);
             this.task=selectedElement[0].title;
             this.operation='Edit Task'
         },
@@ -65,7 +65,7 @@ export default {
                 title : e
             }
             this.todos[this.editElement-1]=todoObject;
-            console.log(this.todos);
+            // console.log(this.todos);
 
         }
     }

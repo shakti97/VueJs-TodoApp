@@ -60,11 +60,11 @@ export default {
             if(e==''){
                 return;
             }
-            var todoObject={
-                id : this.editElement,
-                title : e
-            }
-            this.todos[this.editElement-1]=todoObject;
+            // var todoObject={
+            //     id : this.editElement,
+            //     title : e
+            // }
+            this.todos[this.editElement-1].title=e
             // console.log(this.todos);
 
         }
